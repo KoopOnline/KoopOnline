@@ -17,7 +17,6 @@ class ProductNavSearch extends Component
 
         if($this->search) {
             $products = Product::where('name', 'LIKE', '%' . $this->search . '%')
-            ->select('name')
             ->distinct()
             ->limit(20)
             ->get();

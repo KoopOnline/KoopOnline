@@ -10,7 +10,7 @@
         <ul class="w-full bg-white rounded-lg mt-3 mr-2 absolute shadow-lg cursor-pointer border-2 max-h-[20rem] overflow-y-auto custom-scrollbar z-40" x-show="search">
             @foreach ($products as $product)
                 
-            <a href="{{route('product', ['product_name' => $product['name']])}}" >
+            <a href="{{route('product', ['product_name' => str_replace(' ', '-', $product['normalised_name'])])}}" >
                 <li class="text-gray-600 px-3 py-1.5 w-full hover:bg-gray-100 " >
                     {{$product['name']}}
                 </li> 
