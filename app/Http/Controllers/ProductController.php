@@ -71,7 +71,7 @@ class ProductController extends Controller
 
         $client = new Client();
 
-        // try {
+        try {
             $response = $client->get("https://api.bol.com/catalog/v4/search", [
                 'headers' => [
                     'Accept' => 'application/json',
@@ -86,10 +86,9 @@ class ProductController extends Controller
             } else {
                 return null;
             }
-        // } catch (RequestException $e) {
-        //     dd($e->getMessage());
-        //     return null;
-        // }
+        } catch (RequestException $e) {
+            return null;
+        }
 
         
     }
