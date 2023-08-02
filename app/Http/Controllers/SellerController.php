@@ -23,7 +23,8 @@ class SellerController extends Controller
 
         $query = DB::table('pt_products as t')->join(Product::raw('(SELECT ean, COUNT(ean) AS count, MIN(price) AS price FROM pt_products GROUP BY ean) g'), 'g.ean', '=', 't.ean')
         ->select('t.name', 't.image_url', 't.ean', 'g.count', 'g.price', 't.description', 't.brand', 't.category', 't.normalised_name')
-        ->where(['merchant' => $seller]);        
+        ->where(['merchant' => $seller])
+        ->orderBy('g.count', 'DESC');    
 
         $firstResult = $query->get();
 
