@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SellerController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/product/{product_name}.html', function(){ 
+    return Redirect::to('/product/{product_name}', 301); 
+});
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/merken', [BrandController::class, 'index'])->name('brands');
