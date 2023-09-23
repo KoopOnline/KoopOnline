@@ -285,7 +285,7 @@
               if (strpos($importRecord["name"],$word) !== FALSE) $found++;
             }
           }
-          if ($found == count($words))
+          if ($found == count_($words))
           {
             $importRecord["name"] = $v;
 
@@ -327,7 +327,7 @@
 
         preg_match($v["regexp"],$importRecord["name"],$matches);
 
-        if (count($matches))
+        if (count_($matches))
         {
           $regexpMapped = TRUE;
 
@@ -370,7 +370,7 @@
             }
           }
 
-          if ($found == count($words))
+          if ($found == count_($words))
           {
             $importRecord["brand"] = $v;
 
@@ -403,7 +403,7 @@
             }
           }
 
-          if ($found == count($words))
+          if ($found == count_($words))
           {
             $importRecord["category"] = $v;
 
@@ -436,7 +436,7 @@
             }
           }
 
-          if ($found == count($words))
+          if ($found == count_($words))
           {
             $importRecord["categoryid"] = $v;
 
@@ -732,7 +732,7 @@
 
     MagicParser_parse($config_feedDirectory.$admin_importFeed["filename"],"admin__importRecordHandler",$admin_importFeed["format"]);
 
-    $sql = "SELECT COUNT(*) AS productCount FROM `".$config_databaseTablePrefix.$table."` WHERE filename='".database_safe($admin_importFeed["filename"])."'";
+    $sql = "SELECT count(*) AS productCount FROM `".$config_databaseTablePrefix.$table."` WHERE filename='".database_safe($admin_importFeed["filename"])."'";
 
     database_querySelect($sql,$rows);
 
@@ -753,7 +753,7 @@
 
     database_queryModify($sql,$insertId);
 
-    $sql = "SELECT product_name,AVG(rating) as rating,COUNT(id) as reviews FROM `".$config_databaseTablePrefix."reviews` WHERE approved <> '0' GROUP BY product_name";
+    $sql = "SELECT product_name,AVG(rating) as rating,count_(id) as reviews FROM `".$config_databaseTablePrefix."reviews` WHERE approved <> '0' GROUP BY product_name";
 
     if (database_querySelect($sql,$rows))
     {

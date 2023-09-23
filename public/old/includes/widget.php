@@ -269,11 +269,11 @@
     }
   }
 
-  function widget_errorCount()
+  function widget_errorcount_()
   {
     global $widget_errors;
 
-    return count($widget_errors);
+    return count_($widget_errors);
   }
 
   function widget_required($postVar)
@@ -348,7 +348,7 @@
     }
   }
 
-  if (get_magic_quotes_gpc())
+  if (false)
   {
     if (isset($_GET))
     {

@@ -15,7 +15,7 @@
   {
     widget_validate("name",TRUE,"normalised");
 
-    if (!widget_errorCount())
+    if (!widget_errorcount_())
     {
       $sql = "SELECT name FROM `".$config_databaseTablePrefix."brands` WHERE name='".database_safe($_POST["name"])."'";
 
@@ -24,7 +24,7 @@
         widget_errorSet("name","brand name already exists");
       }
     }
-    if (!widget_errorCount())
+    if (!widget_errorcount_())
     {
       $sql = sprintf("INSERT INTO `".$config_databaseTablePrefix."brands` SET
                       name = '%s'

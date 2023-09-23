@@ -91,7 +91,7 @@
       }
     }
 
-    if (count($unregistered) + count($registered) + count($deleted))
+    if (count_($unregistered) + count_($registered) + count_($deleted))
     {
       asort($unregistered);
 
@@ -290,7 +290,7 @@
 
   admin_tool("New Voucher Code","voucher_codes_edit.php?id=0",TRUE,FALSE);
 
-  admin_tool("Purge Expired","voucher_codes.php?action=purge",count($vouchers),FALSE);
+  admin_tool("Purge Expired","voucher_codes.php?action=purge",count_($vouchers),FALSE);
 
   print "</p>";
 

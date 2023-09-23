@@ -34,7 +34,7 @@
 
   require("admin_header.php");
 
-  $sql = "SELECT COUNT(*) as numPending FROM `".$config_databaseTablePrefix."reviews` WHERE approved='0'";
+  $sql = "SELECT count(*) as numPending FROM `".$config_databaseTablePrefix."reviews` WHERE approved='0'";
 
   database_querySelect($sql,$rows);
 

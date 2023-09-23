@@ -37,7 +37,7 @@
 
           $keys = array_keys($alternates,"=".$category);
 
-          if (count($keys))
+          if (count_($keys))
           {
             unset($alternates[$keys[0]]);
           }
@@ -59,7 +59,7 @@
 
             $keys = array_keys($alternates,"=".$category);
 
-            if (count($keys))
+            if (count_($keys))
             {
               unset($alternates[$keys[0]]);
             }
@@ -143,7 +143,7 @@
       $ins[] = "'".database_safe($alternate)."'";
     }
 
-    if (count($ins))
+    if (count_($ins))
     {
       $in = implode(",",$ins);
 
@@ -180,7 +180,7 @@
     $rows = $newRows;
   }
 
-  if (count($rows))
+  if (count_($rows))
   {
     print "<div id='options' style='display:none;'>";
 

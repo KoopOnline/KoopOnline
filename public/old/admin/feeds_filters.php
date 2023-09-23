@@ -54,7 +54,7 @@
 
     widget_required("field");
 
-    if (!widget_errorCount())
+    if (!widget_errorcount_())
     {
       $sql = sprintf("INSERT INTO `".$config_databaseTablePrefix."filters` SET
                       filename = '%s',
@@ -112,7 +112,7 @@
   {
     $first_created = $rows[0]["created"];
 
-    $last_created = $rows[count($rows)-1]["created"];
+    $last_created = $rows[count_($rows)-1]["created"];
 
     print "<table>";
 

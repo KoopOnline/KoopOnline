@@ -174,7 +174,7 @@
 
   print "<p class='pta_to'>";
 
-  if (count($nodes) && !$enableDelete) admin_tool("Enable Delete","categories_hierarchy.php?enableDelete=1",TRUE,FALSE);
+  if (count_($nodes) && !$enableDelete) admin_tool("Enable Delete","categories_hierarchy.php?enableDelete=1",TRUE,FALSE);
 
   print "</p>";
 

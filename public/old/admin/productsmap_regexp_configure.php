@@ -40,7 +40,7 @@
 
     widget_validate("brand",FALSE,"normalised");
 
-    if (!widget_errorCount() && ($submit == translate("Save")))
+    if (!widget_errorcount_() && ($submit == translate("Save")))
     {
       $sql = "UPDATE `".$config_databaseTablePrefix."productsmap_regexp` SET
 
@@ -77,7 +77,7 @@
 
   print "<h3>".translate("Configure")." (".$productmap["name"].")</h3>";
 
-  if (($submit == translate("Test")) && !widget_errorCount())
+  if (($submit == translate("Test")) && !widget_errorcount_())
   {
     print "<div class='row'>";
 
@@ -146,7 +146,7 @@
           {
             preg_match($productmap["regexp"],$importRecord["original_name"],$matches);
 
-            if (count($matches))
+            if (count_($matches))
             {
               $importRecord["name"] = $productmap["product_name"];
 
@@ -179,7 +179,7 @@
           }
         }
 
-        if (count($products))
+        if (count_($products))
         {
           usort($products,"cmp");
 

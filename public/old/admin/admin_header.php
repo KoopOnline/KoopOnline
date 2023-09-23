@@ -136,7 +136,7 @@
             }
           }
 
-          if (count($extensions))
+          if (count_($extensions))
           {
             print "<li>";
 

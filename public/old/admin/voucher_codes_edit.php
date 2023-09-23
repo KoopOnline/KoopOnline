@@ -122,7 +122,7 @@
       $_POST["valid_to"] = "";
     }
 
-    if (!widget_errorCount())
+    if (!widget_errorcount_())
     {
       if ($_POST["discount_value"])
       {
@@ -233,7 +233,7 @@
 
     MagicParser_parse($config_voucherCodesFeedDirectory.$filename,"myRecordHandler",$voucherfeed["format"]);
 
-    if (isset($voucherRecord) && !$id && !count($_POST))
+    if (isset($voucherRecord) && !$id && !count_($_POST))
     {
       $_POST["merchant"] = $_GET["merchant"];
 

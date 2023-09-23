@@ -85,7 +85,7 @@
 
   if (is_writable("../logos/"))
   {
-    if (count($merchants))
+    if (count_($merchants))
     {
       print "<form method='post' enctype='multipart/form-data'>";
 

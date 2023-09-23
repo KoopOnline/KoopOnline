@@ -26,7 +26,7 @@
 
     widget_validate("filename",TRUE,"filename");
 
-    if (!widget_errorCount())
+    if (!widget_errorcount_())
     {
       if ($id)
       {

@@ -1,14 +1,18 @@
 <?php
 
+function count_($array) {
+    return is_array($array) ? count($array) : 0;
+}
+
 	// Load DotEnvironment Class
-	require_once('./class.environment.php');
-	$__DotEnvironment = new DotEnvironment(realpath(__DIR__."/../.env"))
+	require_once('class.environment.php');
+	$__DotEnvironment = new DotEnvironment(realpath(__DIR__."/../../.env"));
 
 	  $config_title = "Koop Online | De nummer één prijsvergelijker!";
 
 	  $config_charset = "utf-8";
 
-	  $config_baseHREF = "/";
+	  $config_baseHREF = "/old/";
 
 	  $config_useRewrite = TRUE;
 

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class DotEnvironment {
     private $path;
@@ -12,7 +12,7 @@ class DotEnvironment {
 
         //Check .envenvironment file exists
         if(!is_file(realpath($this->path))){
-            throw new ErrorException("Environment File is Missing.");
+            throw new ErrorException("Environment File is Missing at: ".$this->path);
         }
         //Check .envenvironment file is readable
         if(!is_readable(realpath($this->path))){

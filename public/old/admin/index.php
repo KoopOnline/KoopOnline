@@ -74,7 +74,7 @@
       }
     }
 
-    if (count($unregistered) + count($registered) + count($deleted))
+    if (count_($unregistered) + count_($registered) + count_($deleted))
     {
       asort($unregistered);
 
@@ -226,9 +226,9 @@
 
   admin_tool("Global Filters","feeds_filters.php",TRUE,FALSE);
 
-  admin_tool("Import All","feeds_import.php",count($registered),FALSE);
+  admin_tool("Import All","feeds_import.php",count_($registered),FALSE);
 
-  admin_tool("Slow Import All","feeds_import_slow.php",count($registered),FALSE);
+  admin_tool("Slow Import All","feeds_import_slow.php",count_($registered),FALSE);
 
   print "</p>";
 

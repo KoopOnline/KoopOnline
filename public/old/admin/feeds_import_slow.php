@@ -41,7 +41,7 @@
 
     global $admin_importFeed;
 
-    $sql = "SELECT COUNT(*) AS productCount FROM `".$config_databaseTablePrefix."products` WHERE filename='".database_safe($admin_importFeed["filename"])."'";
+    $sql = "SELECT count(*) AS productCount FROM `".$config_databaseTablePrefix."products` WHERE filename='".database_safe($admin_importFeed["filename"])."'";
 
     database_querySelect($sql,$rows);
 
@@ -109,7 +109,7 @@
   {
     import_slow_pre();
 
-    $sql = "SELECT COUNT(*) AS numProducts FROM `".$config_databaseTablePrefix."products` WHERE filename = '".database_safe($admin_importFeed["filename"])."'";
+    $sql = "SELECT count(*) AS numProducts FROM `".$config_databaseTablePrefix."products` WHERE filename = '".database_safe($admin_importFeed["filename"])."'";
 
     database_querySelect($sql,$rows);
 

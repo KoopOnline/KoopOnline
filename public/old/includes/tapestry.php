@@ -128,7 +128,7 @@
       {
         $ins[$product["merchant"]] = "'".database_safe($product["merchant"])."'";
       }
-      if (count($ins))
+      if (count_($ins))
       {
         $in = implode(",",$ins);
 
@@ -353,7 +353,7 @@
 
     $categoryHierarchyArray = array();
 
-    if (count($ids))
+    if (count_($ids))
     {
       $in = implode(",",$ids);
 
@@ -415,7 +415,7 @@
         }
       }
 
-    } while(count($ids));
+    } while(count_($ids));
 
     return $lowerarchy;
   }

@@ -269,7 +269,7 @@
 
     print "</t>";
 
-    $width = intval(55 / count($fieldSet));
+    $width = intval(55 / count_($fieldSet));
 
     foreach($fieldSet as $k => $v)
     {

@@ -43,7 +43,7 @@
 
     widget_required("field_price");
 
-    if (!widget_errorCount())
+    if (!widget_errorcount_())
     {
       $registerFields = array();
 

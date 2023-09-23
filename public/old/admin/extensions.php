@@ -34,7 +34,7 @@
 
   require($extension);
 
-  if (isset($_POST) && count($_POST)) extension_handler();
+  if (isset($_POST) && count_($_POST)) extension_handler();
 
   $meta = $$ns;
 

@@ -285,7 +285,7 @@
 
     if ($index < 0)
     {
-      $index = count($parts) + $index;
+      $index = count_($parts) + $index;
     }
 
     return $parts[$index];

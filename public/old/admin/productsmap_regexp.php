@@ -15,12 +15,12 @@
   {
     widget_required("name");
 
-    if (!widget_errorCount())
+    if (!widget_errorcount_())
     {
       $_POST["name"] = trim($_POST["name"]);
     }
 
-    if (!widget_errorCount())
+    if (!widget_errorcount_())
     {
       $sql = "SELECT name FROM `".$config_databaseTablePrefix."productsmap_regexp` WHERE name='".database_safe($_POST["name"])."'";
 
@@ -29,7 +29,7 @@
         widget_errorSet("name","mapping name already exists");
       }
     }
-    if (!widget_errorCount())
+    if (!widget_errorcount_())
     {
       $sql = sprintf("INSERT INTO `".$config_databaseTablePrefix."productsmap_regexp` SET
                       name = '%s'

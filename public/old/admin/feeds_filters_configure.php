@@ -66,7 +66,7 @@
 
     $validateFunction($filter["data"]);
 
-    if (!widget_errorCount())
+    if (!widget_errorcount_())
     {
       $sql = "UPDATE `".$config_databaseTablePrefix."filters` SET data = '".database_safe(serialize($filter["data"]))."' WHERE id='".database_safe($id)."'";
 
