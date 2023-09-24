@@ -1,10 +1,10 @@
 <?php
   set_time_limit(0);
-  
-  chdir('/home/kooponline/domains/kooponline.com/public_html/scripts/');
+
+  chdir('/var/www/laravelapp/KoopOnline/public/old/scripts/');
 
   require("../includes/common.php");
-  
+
   print "Cron start at ". date("H:i:s")."\n";
 
   if (isset($_SERVER["REQUEST_METHOD"]))
@@ -77,6 +77,6 @@
       }
     }
   }
-  
+
   exit();
 ?>
