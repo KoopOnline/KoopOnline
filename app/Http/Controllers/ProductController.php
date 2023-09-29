@@ -13,9 +13,9 @@ use PhpScience\TextRank\Tool\StopWords\Dutch;
 
 class ProductController extends Controller
 {
-    
+
     public function index($product_name) {
-        
+
         $product_name = str_replace('-', ' ', $product_name);
         $product = Product::where(['normalised_name' => $product_name])->orderBy('price')->get();
 
@@ -47,13 +47,15 @@ class ProductController extends Controller
 
         if(count($relevantProducts) != 4) {
             $relevantProducts = DB::table('pt_products as t')->join(Product::raw('(SELECT ean, COUNT(ean) AS count, MIN(price) AS price FROM pt_products GROUP BY ean) g'), 'g.ean', '=', 't.ean')
-            ->select('t.name', 't.image_url', 't.ean', 'g.count', 'g.price')
+            ->select('t.name', 't.image_url', 't.ean', 'g.count', 'g.price', 't.normalised_name')
             ->where('t.category', '=', $product[0]->category)
             ->where('t.ean', '!=', $product[0]->ean)
             ->orderBy('g.count', 'DESC')
             ->limit(4)
             ->get();
         }
+
+        dd($relevantProducts);
 
         $bolData = $this->makeApiRequest($product[0]->ean);
 
@@ -90,23 +92,23 @@ class ProductController extends Controller
             return null;
         }
 
-        
+
     }
 
     public function getAccessToken()
     {
         $cachedAccessToken = Cache::get('access_token');
-    
+
         if ($cachedAccessToken) {
             return $cachedAccessToken;
         }
-    
+
         $clientId = 'fc8563f6-7386-45e1-acc3-d7d87d94b2bc';
         $clientSecret = '33Go07Es0dWVjF1URjiwoIINCXFmSP44qJSvBawsQ95IHcxIIPTqt+xr@c71V60k';
         $base64EncodedCredentials = base64_encode($clientId . ':' . $clientSecret);
-    
+
         $client = new Client();
-    
+
         try {
 
             $response = $client->post('https://login.bol.com/token?grant_type=client_credentials', [
@@ -114,13 +116,13 @@ class ProductController extends Controller
                     'Authorization' => 'Basic ' . $base64EncodedCredentials,
                 ],
             ]);
-    
+
             if ($response->getStatusCode() === 200) {
                 $responseData = json_decode($response->getBody(), true);
                 $accessToken = $responseData['access_token'];
-    
+
                 Cache::put('access_token', $accessToken, now()->addMinutes(4));
-    
+
                 return $accessToken;
             } else {
                 return null;
