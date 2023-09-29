@@ -13,10 +13,10 @@ class SearchController extends Controller
 
         $query = DB::table('pt_products as t')
             ->join(DB::raw('(SELECT ean, COUNT(ean) AS count, MIN(price) AS price FROM pt_products GROUP BY ean) g'), 'g.ean', '=', 't.ean')
-            ->select('t.name', 't.image_url', 't.ean', 'g.count', 'g.price', 't.description', 't.brand', 't.category')
+            ->select('t.name', 't.image_url', 't.ean', 'g.count', 'g.price', 't.description', 't.brand', 't.category', 't.normalised_name')
             ->where('t.name', 'LIKE', '%' . $search . '%')
             ->orderBy('g.count', 'DESC');
-    
+
         $firstResult = $query->get();
 
         $filterBrands = $firstResult->pluck('brand')->unique();
@@ -26,15 +26,15 @@ class SearchController extends Controller
         if ($request->has('categorie')) {
             $query->where('t.category', $request->input('categorie'));
         }
-    
+
         if ($request->has('merk')) {
             $query->where('t.brand', $request->input('merk'));
         }
-    
+
         if ($request->has('prijs_tot')) {
             $query->where('g.price', '<=', $request->input('prijs_tot'));
         }
-    
+
         if ($request->has('prijs_vanaf')) {
             $query->where('g.price', '>=', $request->input('prijs_vanaf'));
         }
@@ -47,11 +47,11 @@ class SearchController extends Controller
                 $query->orderBy('g.price', 'asc');
             }
         }
-    
+
         $productResults = $query->paginate(20);
 
-    
+
         return view('pages.search', ['productResults' => $productResults, 'filterBrands' => $filterBrands, 'filterCategory' => $filterCategory, 'search' => $search, 'url' => $request->url()]);
     }
-    
+
 }
