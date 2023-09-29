@@ -55,8 +55,6 @@ class ProductController extends Controller
             ->get();
         }
 
-        dd($relevantProducts);
-
         $bolData = $this->makeApiRequest($product[0]->ean);
 
         return view('pages.product', ['product' => $product, 'description' => implode(" ",$api->summarizeTextFreely($text, 10, 5, 0 )), 'relevantProducts' => $relevantProducts, 'bolData' => $bolData]);
