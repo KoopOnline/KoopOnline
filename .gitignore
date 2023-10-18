@@ -19,3 +19,4 @@ yarn-error.log
 /.vscode
 /.vs
 /public/old/feeds/*
+/public/cache/*
