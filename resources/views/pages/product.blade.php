@@ -39,7 +39,7 @@
                     <h2><span class="font-bold">Prijs:</span> €{{$product[0]->price}}</h2>
                     <h2><span class="font-bold">EAN:</span> {{$product[0]->ean}}</h2>
                     @if ($product[0]->brand != '')
-                        <h2><span class="font-bold">Merk:</span><a href="{{route('brand', ['brand' => $product[0]->brand])}}">{{$product[0]->brand}}</a></h2>
+                        <h2><span class="font-bold">Merk:</span> <a href="{{route('brand', ['brand' => $product[0]->brand])}}">{{$product[0]->brand}}</a></h2>
                     @endif
                 </div>
             </div>
