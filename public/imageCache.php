@@ -1,5 +1,5 @@
 <?php
-  require("includes/common.php");
+  //require("old/includes/common.php");
   $imageCacheDir = "cache/"; // set to writable folder for image cache storage
   $imageCacheTime = 3628800;  // cache period in seconds, set to zero for proxy only mode (3628800 = 1.5 months)
   $imageCacheResize = 180; // set to resize dimension to enable  e.g. $imageCacheResize = 250;
@@ -93,7 +93,7 @@
    $src = str_replace(' ', '%20', base64_decode($_GET["src"])); //inclu %20 hack
   if (!$img = cacheFetch($src))
   {
-	$image = file_get_contents('images/productnietgevonden.jpg');
+	$image = file_get_contents('imgs/productnietgevonden.jpg');
 	header('Content-type: image/jpeg;');
 	header("Content-Length: " . strlen($image));
 	echo $image;
