@@ -58,7 +58,7 @@
     
                 {{-- WebStore Section --}}
     
-                @if(array_key_exists('products', $bolData) && array_key_exists('offers', $bolData['products'][0]['offerData']))
+                @if($bolData && array_key_exists('products', $bolData) && array_key_exists('offers', $bolData['products'][0]['offerData']))
     
                     <tr class="w-full p-3 even:bg-gray-100 " x-show="!bol" >
                         <td class="p-2 min-w-[170px]">

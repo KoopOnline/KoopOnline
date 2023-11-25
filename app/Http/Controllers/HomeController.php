@@ -5,11 +5,23 @@ namespace App\Http\Controllers;
 use stdClass;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Butschster\Head\Facades\Meta;
 use Illuminate\Support\Facades\DB;
+use Butschster\Head\Packages\Entities\OpenGraphPackage;
 
 class HomeController extends Controller
 {
     public function index() {
+
+        Meta::setTitle('KoopOnline.com');
+        Meta::setDescription("Ontdek op KoopOnline.com miljoenen producten, vergelijk prijzen snel en bespaar tijd en geld. Elektronica of huishoudelijke apparaten, vind de beste deals!");
+        
+        $og = new OpenGraphPackage('OG');
+        $og->setType('website')
+        ->setSiteName('kooponline.com')
+        ->setTitle('Ontdek op KoopOnline.com miljoenen producten, vergelijk prijzen snel en bespaar tijd en geld.');
+        $og->addImage(asset('imgs/logo.PNG'), [ 'type' => 'image/png' ]);
+        $og->addMeta('image:alt', 'KoopOnline.com logo');
 
         $categories = [['t.category = "Mobiele telefoons"', 't.price > 300'], ['t.category = "Laptops"', 't.price > 500'], ['t.category = "Lego"'], ['t.category = "Barbecues"'], ['t.category = "Drones"', 't.price > 200']];
         $categoryNames = ['Mobiele telefoons', 'Laptops', 'Lego', 'Barbecues', 'Drones'];

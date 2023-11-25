@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Butschster\Head\Facades\Meta;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use PhpScience\TextRank\TextRankFacade;
 use GuzzleHttp\Exception\RequestException;
 use PhpScience\TextRank\Tool\StopWords\Dutch;
+use Butschster\Head\Packages\Entities\OpenGraphPackage;
 
 class ProductController extends Controller
 {
@@ -18,6 +20,16 @@ class ProductController extends Controller
 
         $product_name = str_replace('-', ' ', $product_name);
         $product = Product::where(['normalised_name' => $product_name])->orderBy('price')->get();
+
+        Meta::setTitle('KoopOnline.com - '.$product_name);
+        Meta::setDescription("Bekijk een vergelijking van aanbieders voor het product ".$product_name.".");
+
+        $og = new OpenGraphPackage('OG');
+        $og->setType('website')
+        ->setSiteName('kooponline.com')
+        ->setTitle('Bekijk een vergelijking van aanbieders voor het product '.$product_name.'.');
+        $og->addImage($product[0]->image_url, [ 'type' => 'image/png' ]);
+        $og->addMeta('image:alt', $product_name.' image');
 
         if(count($product) == 0) {
             return view('pages.productNotFound');

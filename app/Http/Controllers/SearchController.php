@@ -4,12 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Butschster\Head\Facades\Meta;
 use Illuminate\Support\Facades\DB;
+use Butschster\Head\Packages\Entities\OpenGraphPackage;
 
 class SearchController extends Controller
 {
     public function index(Request $request, $search)
     {
+
+        Meta::setTitle('KoopOnline.com - Zoeken '.$search);
+        Meta::setDescription("Bekijk alle resultaten voor de zoekopdracht '".$search."'.");
+        
+        $og = new OpenGraphPackage('OG');
+        $og->setType('website')
+        ->setSiteName('kooponline.com')
+        ->setTitle('Bekijk alle resultaten voor de zoekopdracht '.$search.'.');
+        $og->addImage(asset('imgs/logo.PNG'), [ 'type' => 'image/png' ]);
+        $og->addMeta('image:alt', 'KoopOnline.com image');
 
         $query = DB::table('pt_products as t')
             ->join(DB::raw('(SELECT ean, COUNT(ean) AS count, MIN(price) AS price FROM pt_products GROUP BY ean) g'), 'g.ean', '=', 't.ean')

@@ -5,11 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Butschster\Head\Facades\Meta;
 use Illuminate\Support\Facades\DB;
+use Butschster\Head\Packages\Entities\OpenGraphPackage;
 
 class BrandController extends Controller
 {
     public function index() {
+
+        Meta::setTitle('KoopOnline.com - Merken');
+        Meta::setDescription("Bekijk ons uitgebreide assortiment aan merken. We vergelijken alle merken met elkaar en tonen u de beste prijs.");
+        
+        $og = new OpenGraphPackage('OG');
+        $og->setType('website')
+        ->setSiteName('kooponline.com')
+        ->setTitle("Bekijk ons uitgebreide assortiment aan merken. We vergelijken alle merken met elkaar en tonen u de beste prijs.");
+        $og->addImage(asset('imgs/logo.PNG'), [ 'type' => 'image/png' ]);
+        $og->addMeta('image:alt', 'KoopOnline.com logo');
 
         $brands = Product::select('brand')->distinct()->where('brand', '!=', '')->get();
 
@@ -33,6 +45,17 @@ class BrandController extends Controller
     public function show(Request $request, $brand) {
 
         $brand = str_replace('-', ' ', $brand);
+
+        Meta::setTitle('KoopOnline.com - Merk '. $brand);
+        Meta::setDescription("Bekijk een vergelijking van alle producten en prijzen van het merk ".$brand.".");
+        
+        $og = new OpenGraphPackage('OG');
+        $og->setType('website')
+        ->setSiteName('kooponline.com')
+        ->setTitle("Bekijk een vergelijking van alle producten en prijzen van het merk ".$brand.".");
+        $og->addImage(asset('imgs/logo.PNG'), [ 'type' => 'image/png' ]);
+        $og->addMeta('image:alt', 'KoopOnline.com logo');
+
         $query = DB::table('pt_products as t')->join(Product::raw('(SELECT ean, COUNT(ean) AS count, MIN(price) AS price FROM pt_products GROUP BY ean) g'), 'g.ean', '=', 't.ean')
         ->select('t.name', 't.image_url', 't.ean', 'g.count', 'g.price', 't.description', 't.brand', 't.category', 't.normalised_name')
         ->where(['brand' => $brand])

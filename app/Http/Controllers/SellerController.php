@@ -4,12 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Butschster\Head\Facades\Meta;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Butschster\Head\Packages\Entities\OpenGraphPackage;
 
 class SellerController extends Controller
 {
     public function index() {
+
+        Meta::setTitle('KoopOnline.com - Verkopers');
+        Meta::setDescription("Ontdek de verkopers van de vergeleken producten op onze site."); 
+
+        $og = new OpenGraphPackage('OG');
+        $og->addImage(asset('imgs/logo.PNG'), [ 'type' => 'image/png' ]);
+        $og->addMeta('image:alt', 'KoopOnline.com image');
+        
         $publicPath = public_path('imgs/sellers');
         $images = File::files($publicPath);
         $imagesSrc = [];
@@ -20,6 +30,16 @@ class SellerController extends Controller
     }
 
     public function show(Request $request, $seller) {
+
+        Meta::setTitle('KoopOnline.com - Verkopers');
+        Meta::setDescription("Vergelijk alle producten van de verkoper ".$seller.". Ontdek de beste deals.");
+
+        $og = new OpenGraphPackage('OG');
+        $og->setType('website')
+        ->setSiteName('kooponline.com')
+        ->setTitle('Vergelijk alle producten van de verkoper '.$seller.'.');
+        $og->addImage(asset('imgs/logo.PNG'), [ 'type' => 'image/png' ]);
+        $og->addMeta('image:alt', 'KoopOnline.com image');
 
         $query = DB::table('pt_products as t')->join(Product::raw('(SELECT ean, COUNT(ean) AS count, MIN(price) AS price FROM pt_products GROUP BY ean) g'), 'g.ean', '=', 't.ean')
         ->select('t.name', 't.image_url', 't.ean', 'g.count', 'g.price', 't.description', 't.brand', 't.category', 't.normalised_name')
