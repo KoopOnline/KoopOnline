@@ -3,7 +3,7 @@
   $config_automationHandler = "auto";
   $imageCacheDir = "cache/"; // set to writable folder for image cache storage
   $imageCacheTime = 3628800;  // cache period in seconds, set to zero for proxy only mode (3628800 = 1.5 months)
-  $imageCacheResize = 180; // set to resize dimension to enable  e.g. $imageCacheResize = 250;
+  $imageCacheResize = 500; // set to resize dimension to enable  e.g. $imageCacheResize = 250;
   function cacheFetch_auto($src)
   {
     if (function_exists("curl_init"))

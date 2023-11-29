@@ -15,12 +15,12 @@ class BrandController extends Controller
 
         Meta::setTitle('KoopOnline.com - Merken');
         Meta::setDescription("Bekijk ons uitgebreide assortiment aan merken. We vergelijken alle merken met elkaar en tonen u de beste prijs.");
-        
+
         $og = new OpenGraphPackage('OG');
         $og->setType('website')
         ->setSiteName('kooponline.com')
         ->setTitle("Bekijk ons uitgebreide assortiment aan merken. We vergelijken alle merken met elkaar en tonen u de beste prijs.");
-        $og->addImage(asset('imgs/logo.PNG'), [ 'type' => 'image/png' ]);
+        $og->addImage(asset('https://www.kooponline.com/imgs/kooponline-logo-big.png'), [ 'type' => 'image/png' ]);
         $og->addMeta('image:alt', 'KoopOnline.com logo');
 
         $brands = Product::select('brand')->distinct()->where('brand', '!=', '')->get();
@@ -48,7 +48,7 @@ class BrandController extends Controller
 
         Meta::setTitle('KoopOnline.com - Merk '. $brand);
         Meta::setDescription("Bekijk een vergelijking van alle producten en prijzen van het merk ".$brand.".");
-        
+
         $og = new OpenGraphPackage('OG');
         $og->setType('website')
         ->setSiteName('kooponline.com')

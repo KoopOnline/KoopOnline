@@ -28,7 +28,7 @@ class ProductController extends Controller
         $og->setType('website')
         ->setSiteName('kooponline.com')
         ->setTitle('Bekijk een vergelijking van aanbieders voor het product '.$product_name.'.');
-        $og->addImage($product[0]->image_url, [ 'type' => 'image/png' ]);
+        $og->addImage("https://www.kooponline.com/imageCache.php?src=".base64_encode($product[0]->image_url), [ 'type' => 'image/jpeg' ]);
         $og->addMeta('image:alt', $product_name.' image');
 
         if(count($product) == 0) {

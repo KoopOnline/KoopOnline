@@ -14,12 +14,12 @@ class SellerController extends Controller
     public function index() {
 
         Meta::setTitle('KoopOnline.com - Verkopers');
-        Meta::setDescription("Ontdek de verkopers van de vergeleken producten op onze site."); 
+        Meta::setDescription("Ontdek de verkopers van de vergeleken producten op onze site.");
 
         $og = new OpenGraphPackage('OG');
-        $og->addImage(asset('imgs/logo.PNG'), [ 'type' => 'image/png' ]);
+        $og->addImage(asset('https://www.kooponline.com/imgs/kooponline-logo-big.png'), [ 'type' => 'image/png' ]);
         $og->addMeta('image:alt', 'KoopOnline.com image');
-        
+
         $publicPath = public_path('imgs/sellers');
         $images = File::files($publicPath);
         $imagesSrc = [];
@@ -44,7 +44,7 @@ class SellerController extends Controller
         $query = DB::table('pt_products as t')->join(Product::raw('(SELECT ean, COUNT(ean) AS count, MIN(price) AS price FROM pt_products GROUP BY ean) g'), 'g.ean', '=', 't.ean')
         ->select('t.name', 't.image_url', 't.ean', 'g.count', 'g.price', 't.description', 't.brand', 't.category', 't.normalised_name')
         ->where(['merchant' => $seller])
-        ->orderBy('g.count', 'DESC');    
+        ->orderBy('g.count', 'DESC');
 
         $firstResult = $query->get();
 
