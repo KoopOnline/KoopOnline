@@ -36,6 +36,7 @@ return [
      * Packages, that should be included everywhere
      */
     'packages' => [
+        'OG'
         // 'jquery', 'bootstrap', ...
     ],
 
