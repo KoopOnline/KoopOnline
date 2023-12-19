@@ -13,7 +13,7 @@ class HomeController extends Controller
 {
     public function index() {
 
-        Meta::setTitle('KoopOnline.com');
+        Meta::setTitle('KoopOnline.com - De nummer één Prijsvergelijker!');
         Meta::setDescription("Ontdek op KoopOnline.com miljoenen producten, vergelijk prijzen snel en bespaar tijd en geld. Elektronica of huishoudelijke apparaten, vind de beste deals!");
 
         $og = new OpenGraphPackage('OG');
