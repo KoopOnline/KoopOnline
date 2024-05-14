@@ -15,12 +15,12 @@ class SearchController extends Controller
 
         Meta::setTitle('KoopOnline.com - Zoeken '.$search);
         Meta::setDescription("Bekijk alle resultaten voor de zoekopdracht '".$search."'.");
-        
+
         $og = new OpenGraphPackage('OG');
         $og->setType('website')
         ->setSiteName('kooponline.com')
         ->setTitle('Bekijk alle resultaten voor de zoekopdracht '.$search.'.');
-        $og->addImage(asset('imgs/logo.PNG'), [ 'type' => 'image/png' ]);
+        $og->addImage(asset('https://www.kooponline.com/imgs/kooponline-logo-big.png'), [ 'type' => 'image/png' ]);
         $og->addMeta('image:alt', 'KoopOnline.com image');
 
         $query = DB::table('pt_products as t')

@@ -60,13 +60,18 @@
         <div class="mb-24 mt-24">
             <div class="py-10 my-auto rounded-lg flex relative mt-4">
                 <div class="relative">
-                    <div class="w-3/4">
-                        <h2 class="font-bold text-xl mb-2 border-b-2 border-black border-opacity-10 pb-2"><span class="text-accent">Deel uw</span> <span class="text-accent2">Ervaring</span></h2>
-                        <h3 class=" text-gray-500 tracking-wider">Vergelijk prijzen bij KoopOnline.com! Sinds 2008 zijn wij de nummer één prijsvergelijkingssite voor de nieuwste en meest populaire producten! U kunt bij ons de beste smartphones, tofste drones, grootste koelkasten, hipste zonnebrillen en de heetse barbecues vinden. Producten voor uw mancave, kantoor, tuin, keuken, slaapkamer en badkamer hebben wij ook opgenomen in onze vergelijkingtool. Het online kopen van goederen was nog nooit zo makkelijk!</h3>
-                    </div>
-                    <div class=" top-1/2 -translate-y-1/2 absolute right-0 bg-white p-2 rounded-lg h-[5rem] cursor-pointer px-5 ">
-                        <h3 class="  font-semibold absolute text-gray-500 text-sm">Deel uw ervaring</h3>
-                        <img class=" h-[2.5rem] -ml-1 mt-5 " src="https://images.ctfassets.net/b7g9mrbfayuu/481UE3ivHGyO0Q8maO08CM/2d6a3d5bf5aa29412cc97d7febec2800/Trustpilot_new_logo.PNG" alt="">
+                    <div class="w-full">
+                        <h2 class="font-bold text-xl mb-2 border-b-2 border-black border-opacity-10 pb-2">
+                            <span class="text-accent">Prijzen</span> <span class="text-accent2">Vergelijken</span>
+                        </h2>
+                        <p class=" text-gray-500 tracking-wider">
+                            Vergelijk prijzen bij KoopOnline.com! Sinds 2008 zijn wij de nummer één prijsvergelijkingssite voor de nieuwste en meest populaire producten! Hier kunt u moeiteloos producten vergelijken om ervoor te zorgen dat u altijd het goedkoopst uit bent.<br /><br />
+                            Het vergelijken van producten is nog nooit zo eenvoudig geweest. Of u nu op zoek bent naar elektronica, kleding, of huishoudelijke apparaten, onze website biedt een uitgebreide database van producten met actuele prijsinformatie. Met slechts een paar klikken kunt u verschillende opties vergelijken en de beste deals ontdekken.<br /><br />
+                            Onze missie is om u tijd en geld te besparen. Door de mogelijkheid te bieden om prijzen te vergelijken, kunt u er zeker van zijn dat u de juiste beslissing neemt bij het kopen van een product. Of het nu gaat om een gadget, meubelstuk of een nieuw paar schoenen, wij helpen u de beste prijs te vinden.<br /><br />
+                            Het kopen van producten via onze prijsvergelijkingswebsite is niet alleen eenvoudig, maar het biedt u ook gemoedsrust. U weet dat u de meest kosteneffectieve keuze maakt, zonder concessies te doen aan kwaliteit. Onze site is ontworpen met het oog op gebruiksgemak, zodat u snel de informatie kunt vinden die u nodig heeft om een weloverwogen beslissing te nemen.<br /><br />
+                            Wij streven ernaar om uw go-to bron te zijn voor het vinden van de goedkoopste deals op het internet. Of u nu op zoek bent naar specifieke merken, modellen of gewoon de laagste prijs, onze prijsvergelijkingswebsite staat voor u klaar.<br /><br />
+                            Wacht niet langer! Ontdek vandaag nog de voordelen van onze prijsvergelijkingswebsite en ervaar hoe eenvoudig het is om te vergelijken, kopen en het goedkoopst uit te zijn. Bespaar tijd en geld met slechts een paar klikken!
+                        </p>
                     </div>
                 </div>
             </div>

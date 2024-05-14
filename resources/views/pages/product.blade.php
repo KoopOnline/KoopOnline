@@ -132,7 +132,7 @@
 
             </tr>
 
-            @if(array_key_exists('products', $bolData) && array_key_exists('offers', $bolData['products'][0]['offerData']))
+            @if(!empty($bolData) && array_key_exists('products', $bolData) && array_key_exists('offers', $bolData['products'][0]['offerData']))
 
                 <tr class="w-full p-3 even:bg-gray-100 ">
                     <td class="p-2 w-[220px] h-[84px]">

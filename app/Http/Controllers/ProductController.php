@@ -22,14 +22,15 @@ class ProductController extends Controller
         $product_name = str_replace('-', ' ', $product_name);
         $product = Product::where(['normalised_name' => $product_name])->orderBy('price')->get();
 
-        Meta::setTitle('KoopOnline.com - ' . $product_name);
+
+        Meta::setTitle('Koop ' . $product_name . ' online!');
         Meta::setDescription("Bekijk een vergelijking van aanbieders voor het product " . $product_name . ".");
 
         $og = new OpenGraphPackage('OG');
         $og->setType('website')
-            ->setSiteName('kooponline.com')
+            ->setSiteName('Koop ' . $product_name . ' online!')
             ->setTitle('Bekijk een vergelijking van aanbieders voor het product ' . $product_name . '.');
-        $og->addImage($product[0]->image_url, ['type' => 'image/png']);
+        $og->addImage("https://www.kooponline.com/imageCache.php?src=" . base64_encode($product[0]->image_url), ['type' => 'image/jpeg']);
         $og->addMeta('image:alt', $product_name . ' image');
 
         if (count($product) == 0) {
