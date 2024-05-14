@@ -17,6 +17,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'client_secret' => env('CLIENT_SECRET', 'client_secret'),
+    'client_id' => env('CLIENT_ID', 'client_id'),
 
     /*
     |--------------------------------------------------------------------------

@@ -16,29 +16,30 @@ use Butschster\Head\Packages\Entities\OpenGraphPackage;
 class ProductController extends Controller
 {
 
-    public function index($product_name) {
+    public function index($product_name)
+    {
 
         $product_name = str_replace('-', ' ', $product_name);
         $product = Product::where(['normalised_name' => $product_name])->orderBy('price')->get();
 
-        Meta::setTitle('KoopOnline.com - '.$product_name);
-        Meta::setDescription("Bekijk een vergelijking van aanbieders voor het product ".$product_name.".");
+        Meta::setTitle('KoopOnline.com - ' . $product_name);
+        Meta::setDescription("Bekijk een vergelijking van aanbieders voor het product " . $product_name . ".");
 
         $og = new OpenGraphPackage('OG');
         $og->setType('website')
-        ->setSiteName('kooponline.com')
-        ->setTitle('Bekijk een vergelijking van aanbieders voor het product '.$product_name.'.');
-        $og->addImage($product[0]->image_url, [ 'type' => 'image/png' ]);
-        $og->addMeta('image:alt', $product_name.' image');
+            ->setSiteName('kooponline.com')
+            ->setTitle('Bekijk een vergelijking van aanbieders voor het product ' . $product_name . '.');
+        $og->addImage($product[0]->image_url, ['type' => 'image/png']);
+        $og->addMeta('image:alt', $product_name . ' image');
 
-        if(count($product) == 0) {
+        if (count($product) == 0) {
             return view('pages.productNotFound');
         }
 
         $text = '';
 
-        foreach($product as $p) {
-            $text = $text. ' '. $p->description;
+        foreach ($product as $p) {
+            $text = $text . ' ' . $p->description;
         }
 
         $api = new TextRankFacade();
@@ -48,29 +49,28 @@ class ProductController extends Controller
         $api->setStopWords($stopWords);
 
         $relevantProducts = DB::table('pt_products as t')->join(Product::raw('(SELECT ean, COUNT(ean) AS count, MIN(price) AS price FROM pt_products GROUP BY ean) g'), 'g.ean', '=', 't.ean')
-        ->select('t.name', 't.image_url', 't.ean', 'g.count', 'g.price', 't.normalised_name')
-        ->where('t.category', '=', $product[0]->category)
-        ->where('t.price', '>=', $product[0]->price - ($product[0]->price * 0.15))
-        ->where('t.price', '<=', $product[0]->price + ($product[0]->price * 0.15))
-        ->where('t.ean', '!=', $product[0]->ean)
-        ->orderBy('g.count', 'DESC')
-        ->limit(4)
-        ->get();
-
-        if(count($relevantProducts) != 4) {
-            $relevantProducts = DB::table('pt_products as t')->join(Product::raw('(SELECT ean, COUNT(ean) AS count, MIN(price) AS price FROM pt_products GROUP BY ean) g'), 'g.ean', '=', 't.ean')
             ->select('t.name', 't.image_url', 't.ean', 'g.count', 'g.price', 't.normalised_name')
             ->where('t.category', '=', $product[0]->category)
+            ->where('t.price', '>=', $product[0]->price - ($product[0]->price * 0.15))
+            ->where('t.price', '<=', $product[0]->price + ($product[0]->price * 0.15))
             ->where('t.ean', '!=', $product[0]->ean)
             ->orderBy('g.count', 'DESC')
             ->limit(4)
             ->get();
+
+        if (count($relevantProducts) != 4) {
+            $relevantProducts = DB::table('pt_products as t')->join(Product::raw('(SELECT ean, COUNT(ean) AS count, MIN(price) AS price FROM pt_products GROUP BY ean) g'), 'g.ean', '=', 't.ean')
+                ->select('t.name', 't.image_url', 't.ean', 'g.count', 'g.price', 't.normalised_name')
+                ->where('t.category', '=', $product[0]->category)
+                ->where('t.ean', '!=', $product[0]->ean)
+                ->orderBy('g.count', 'DESC')
+                ->limit(4)
+                ->get();
         }
 
         $bolData = $this->makeApiRequest($product[0]->ean);
 
-        return view('pages.product', ['product' => $product, 'description' => implode(" ",$api->summarizeTextFreely($text, 10, 5, 0 )), 'relevantProducts' => $relevantProducts, 'bolData' => $bolData]);
-
+        return view('pages.product', ['product' => $product, 'description' => implode(" ", $api->summarizeTextFreely($text, 10, 5, 0)), 'relevantProducts' => $relevantProducts, 'bolData' => $bolData]);
     }
 
     public function makeApiRequest($ean)
@@ -101,8 +101,6 @@ class ProductController extends Controller
         } catch (RequestException $e) {
             return null;
         }
-
-
     }
 
     public function getAccessToken()
@@ -113,8 +111,8 @@ class ProductController extends Controller
             return $cachedAccessToken;
         }
 
-        $clientId = 'fc8563f6-7386-45e1-acc3-d7d87d94b2bc';
-        $clientSecret = '33Go07Es0dWVjF1URjiwoIINCXFmSP44qJSvBawsQ95IHcxIIPTqt+xr@c71V60k';
+        $clientId = config('app.client_id');
+        $clientSecret = config('app.client_secret');
         $base64EncodedCredentials = base64_encode($clientId . ':' . $clientSecret);
 
         $client = new Client();
@@ -137,11 +135,8 @@ class ProductController extends Controller
             } else {
                 return null;
             }
-
         } catch (RequestException $e) {
             return null;
         }
     }
-
-
 }
